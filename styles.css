@@ -1,0 +1,163 @@
+/* ============================================
+   styles.css — Diseño mejorado y más pulido
+   - Mejor tipografía, espaciado y jerarquía
+   - Hero más llamativo y CTA destacado
+   - Mejoras en tarjetas y efectos hover
+   - Selector de idioma integrado visualmente
+   - Accesibilidad: focus-visible, contrastes y skip link
+=============================================== */
+
+/* Variables */
+:root{
+  --bg:#061021;
+  --surface:#0b1722;
+  --card:#07101a;
+  --text:#E6EEF3;
+  --muted:#95a3b8;
+  --accent:#7C5CFC;
+  --accent-2:#2AD4D9;
+  --primary-grad:linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%);
+  --glass:rgba(255,255,255,0.03);
+  --glass-2:rgba(255,255,255,0.02);
+  --radius:14px;
+  --max-width:1200px;
+  --shadow-soft:0 12px 40px rgba(2,6,23,0.6);
+  --shadow-strong:0 30px 80px rgba(10,22,60,0.28);
+  --transition:300ms cubic-bezier(.2,.9,.3,1);
+  --focus: 3px solid rgba(124,92,252,0.18);
+}
+
+/* Light theme */
+body.light{
+  --bg:#f7fbff;
+  --surface:#ffffff;
+  --card:#fbfdff;
+  --text:#071218;
+  --muted:#5b6b78;
+  --accent:#5b21b6;
+  --accent-2:#06b6d4;
+  --glass:rgba(2,6,23,0.03);
+  --glass-2:rgba(2,6,23,0.02);
+}
+
+/* Base */
+*{box-sizing:border-box}
+html{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial;line-height:1.45; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
+body{margin:0;background:
+  radial-gradient(700px 300px at 10% 10%, rgba(124,92,252,0.04), transparent),
+  radial-gradient(600px 240px at 90% 90%, rgba(42,212,217,0.03), transparent),
+  var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Skip link */
+.skip-link{
+  position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;
+}
+.skip-link:focus{
+  left:12px;top:12px;width:auto;height:auto;padding:.5rem .8rem;background:var(--card);color:var(--text);border-radius:8px;z-index:9999;box-shadow:var(--shadow-soft)
+}
+
+/* Container */
+.container{width:calc(100% - 2rem);max-width:var(--max-width);margin:0 auto}
+
+/* Header */
+.site-header{position:sticky;top:10px;z-index:90;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);backdrop-filter:blur(8px);border-radius:12px;margin:8px;box-shadow:0 6px 18px rgba(2,6,23,0.25);transition:all var(--transition)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;gap:1rem}
+.brand{display:flex;align-items:center;gap:.8rem}
+.logo{width:44px;height:44px;border-radius:10px;box-shadow:0 6px 20px rgba(12,18,50,0.12)}
+.brand-name{font-weight:800;letter-spacing:.2px}
+
+/* Nav layout */
+.nav-links{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.nav-left{display:flex;gap:.6rem;align-items:center}
+.nav-left a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:700;transition:all .18s}
+.nav-left a:hover{background:var(--glass);color:var(--text);transform:translateY(-2px)}
+.nav-right{display:flex;align-items:center;gap:.5rem}
+
+/* Search */
+.search-wrap{display:flex;align-items:center;background:var(--card);padding:6px;border-radius:10px;border:1px solid var(--glass);box-shadow:0 8px 30px rgba(2,6,23,0.12)}
+.search-input{background:transparent;border:0;color:var(--text);outline:none;padding:.4rem .5rem;min-width:120px}
+.search-btn{background:transparent;border:0;color:var(--muted);padding:.25rem;margin-left:.25rem;display:inline-flex;align-items:center}
+
+/* Language select */
+.lang-wrap{position:relative}
+.lang-select{
+  -webkit-appearance:none;appearance:none;border:0;background:var(--primary-grad);color:#07101a;padding:.45rem .7rem;border-radius:999px;font-weight:800;cursor:pointer;box-shadow:0 8px 30px rgba(43,76,140,0.12);
+  display:inline-flex;align-items:center;gap:.4rem;
+}
+.lang-select:focus{outline:none;box-shadow:var(--focus)}
+.lang-select option{color:var(--text)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:.5rem;justify-content:center;padding:.55rem .95rem;border-radius:10px;font-weight:700;border:0}
+.btn-primary{background:var(--primary-grad);color:#07101a;box-shadow:var(--shadow-strong);transform:translateZ(0)}
+.btn-ghost{background:transparent;border:1px solid var(--glass);color:var(--muted)}
+.btn:hover{transform:translateY(-3px);transition:all .18s ease}
+
+/* Hero */
+.hero{padding:3.2rem 0}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:1.6rem;align-items:center}
+.kicker{display:inline-block;background:linear-gradient(90deg, rgba(124,92,252,0.12), rgba(42,212,217,0.04));color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:800;font-size:.85rem}
+.hero-title{font-size:2.1rem;line-height:1.02;margin:0 0 .6rem;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;color:transparent}
+.hero-sub{color:var(--muted);max-width:56ch;margin-bottom:1.2rem}
+
+/* CTA styling */
+.hero-cta .btn-primary{padding:0.9rem 1.2rem;border-radius:12px;box-shadow:0 22px 60px rgba(43,76,140,0.12)}
+.hero-cta .btn-ghost{padding:0.85rem 1rem}
+
+/* Visual column */
+.hero-visual{display:flex;justify-content:center;align-items:center}
+.device-mockup{width:100%;max-width:420px;border-radius:18px;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 30px 80px rgba(2,6,23,0.5)}
+
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(1,1fr);gap:1rem;margin:1.2rem 0}
+.kpi-card{padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid var(--glass);box-shadow:var(--shadow-soft);display:flex;flex-direction:column;align-items:center}
+.kpi-number{font-weight:900;font-size:1.5rem;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;color:transparent}
+
+/* Cards */
+.feature-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+.card{padding:1.15rem;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid var(--glass);box-shadow:var(--shadow-soft)}
+.card:hover{transform:translateY(-10px) rotate(0.01deg);box-shadow:0 40px 90px rgba(2,6,23,0.35)}
+.card .card-icon{margin-bottom:.6rem}
+
+/* Pricing */
+.pricing-grid{display:grid;gap:1rem}
+.price-card{padding:1rem;border-radius:12px;border:1px solid var(--glass);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));box-shadow:var(--shadow-soft);transition:transform var(--transition)}
+.price-card.recommended{border-color:rgba(124,92,252,0.14);transform:translateY(0)}
+.price-card:hover{transform:translateY(-8px)}
+
+/* Footer */
+.site-footer{margin-top:2.2rem;padding:1.6rem 0}
+.footer-grid{display:grid;gap:1rem}
+
+/* Reveal & animation */
+@keyframes fadeIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* Alerts / small helpers */
+.alerta{opacity:0;transform:translateY(-8px);transition:all .36s; padding:10px;border-radius:8px;text-align:center;margin-top:10px}
+.alerta.show{opacity:1;transform:none}
+.alerta.error{background:#ff4d4d;color:#fff}
+.alerta.exito{background:#4caf50;color:#fff}
+.invalid{outline:2px solid #F87171;border-radius:6px}
+
+/* Stats panel */
+.stats-panel{position:fixed;right:18px;bottom:18px;width:300px;max-width:92vw;padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 26px 80px rgba(2,6,23,0.35);transform:translateY(120%);transition:transform .32s ease;z-index:140}
+.stats-panel.open{transform:translateY(0)}
+
+/* Focus styles for accessibility */
+:focus{outline:none}
+:focus-visible{box-shadow:var(--focus);border-radius:8px}
+
+/* Responsive layout */
+@media (min-width:720px){
+  .hero-grid{grid-template-columns:1.1fr .9fr;align-items:center}
+  .feature-grid{grid-template-columns:repeat(3,1fr)}
+  .pricing-grid{grid-template-columns:repeat(2,1fr)}
+  .kpi-grid{grid-template-columns:repeat(4,1fr)}
+  .footer-grid{grid-template-columns:repeat(4,1fr)}
+}
